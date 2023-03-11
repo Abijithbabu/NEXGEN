@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexgen</title>
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="user/assets/css/login.css">
+    <style> span{color: red; height: 20px;} </style>
+</head>
+
+<body>
+    <div class="container <% if(active){ %> right-panel-active <% } %>" id="container">
+        <div class="form-container sign-up-container">
+            <form action="/register" method="post" onsubmit="return validateSignup()">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social">N</a>
+                    <a href="#" class="social">e</a>
+                    <a href="#" class="social">X</a>
+                    <a href="#" class="social">G</a>
+                    <a href="#" class="social">e</a>
+                    <a href="#" class="social">N</a>
+                </div>
+                <span style="color: black;">use your email for registration</span>
+                <div class="infield">
+                    <input class="in" type="text" placeholder="Name" name="name" id="name" onkeyup="validateName()" />
+                    <span id="errorName"></span>
+                </div>
+                <div class="infield">
+                    <input class="in" type="text" placeholder="Email" name="email" id="email" onkeyup="validateEmail()" />
+                    <span id="errorEmail"></span>  
+                </div>
+                <div class="infield">
+                    <input class="in" type="text" placeholder="mobile no" name="phone" id="number" onkeyup="validateNumber()" />
+                    <span id="errorNumber"></span>
+                </div>
+                <div class="infield">
+                    <input class="in" type="password" placeholder="Password" name="password" id="password" onkeyup="validatePassword()" />
+                    <span id="errorPassword"></span>
+                </div>
+                <button type="submit" onclick="validateEmail(),validateName(),validatePassword(),validateNumber()">Sign Up</button>
+                <% if(typeof message !=='undefined' ){ %>
+                    <span style="color: crimson; padding-top: 20px;"><%= message %></span>
+                    <% } %>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+          
+            <form action="/login"  method="post" onsubmit="return login()">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social">N</a>
+                    <a href="#" class="social">e</a>
+                    <a href="#" class="social">X</a>
+                    <a href="#" class="social">G</a>
+                    <a href="#" class="social">e</a>
+                    <a href="#" class="social">N</a>
+                </div>
+                <span style="color: black;">provide credentials to login</span>
+                <div class="infield">
+                    <input id="Email" type="text" placeholder="Email" name="email" onkeyup="loginEmail()"/>
+                    <span id="errEmail"></span>  
+                </div>
+                <div class="infield">
+                    <input type="password" id="Password" placeholder="Password" name="password" onkeyup="loginPassword()"/>
+                    <span id="errPassword"></span>
+                </div>
+                <a href="/forget" class="forgot">Forgot your password?</a>
+                <button type="submit" onclick="loginEmail(), loginPassword()">Login</button>
+                <% if(typeof message !=='undefined' ){ %>
+                  <span style="color: crimson; padding-top: 20px;"><%= message %></span>
+                  <% } %>
+            </form>
+        </div>
+        <div class="overlay-container" id="overlayCon">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button>Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button>Sign Up</button>
+                </div>
+            </div>
+            <button id="overlayBtn"></button>
+        </div>
+    </div>
+    <footer>
+    </footer>
+    <!-- js code -->
+    <script>
+        const container = document.getElementById('container');
+        const overlayCon = document.getElementById('overlayCon');
+        const overlayBtn = document.getElementById('overlayBtn');
+
+        overlayBtn.addEventListener('click', () => {
+            container.classList.toggle('right-panel-active');
+
+            overlayBtn.classList.remove('btnScaled');
+            window.requestAnimationFrame(() => {
+                overlayBtn.classList.add('btnScaled');
+            })
+        });
+
+    </script>
+<script src="validation.js"></script>
+</body>
+</html>
