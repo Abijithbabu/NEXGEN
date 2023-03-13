@@ -13,38 +13,55 @@ const loadLogin = async (req, res) => {
     console.log(error.message);
   }
 };
-
-const verifyLogin = async (req, res) => {
+const verifyLogin =async (req,res)=>{
   try {
     const email = req.body.email;
     const password = req.body.password;
-
-    const userData = await User.findOne({ email: email });
-
-    if (userData) {
-      const passwordMatch = await bcrypt.compare(password, userData.password);
-
-      if (passwordMatch) {
-        if (userData.is_admin === 0) {
-          res.render("admin/login", { message: "email and password incorrect" });
-        } else {
-          req.session.admin_id = userData._id;
-          res.redirect("/admin/dashboard");
-        }
-      } else {
-        res.render("admin/login", { message: "email and password is incorrect" });
-      }
-    } else {
-      res.render("admin/login", { message: "email and password is incorrect" });
+    const adminData = {
+      email:'nexadmin@gmail.com',
+      password:'bab260919246'
     }
+    if(email==adminData.email&& password==adminData.password){
+      req.session.admin = adminData.email;
+      res.redirect("/admin/dashboard");
+    } else {
+      res.render("admin/login", { message: "email or password is incorrect" });
+     }
+    
   } catch (error) {
     console.log(error.message);
   }
-};
+}
+// const verifyLogin = async (req, res) => {
+//   try {
+//     const email = req.body.email;
+//     const password = req.body.password;
+
+//     const userData = await User.findOne({ email: email });
+
+//     if (userData) {
+//       const passwordMatch = await bcrypt.compare(password, userData.password);
+
+//       if (passwordMatch) {
+//         if (userData.is_admin === 0) {
+//           res.render("admin/login", { message: "email and password incorrect" });
+//         } else {
+//           req.session.admin_id = userData._id;
+//           res.redirect("/admin/dashboard");
+//         }
+//       } else {
+//         res.render("admin/login", { message: "email and password is incorrect" });
+//       }
+//     } else {
+//       res.render("admin/login", { message: "email and password is incorrect" });
+//     }
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };
 
 const loadDashboard = async (req, res) => {
   try {
-    const userData = await User.findById({ _id: req.session.admin_id });
     const orderData = await Order.find().populate('products.item.productId')
     let arr =[] , dt=[]
     orderData.map((x)=>{
@@ -53,7 +70,7 @@ const loadDashboard = async (req, res) => {
       dt = [...dt,date]
     })
     console.log(arr,dt);
-    res.render("admin/dashboard", { admin: userData,orderData,arr,dt, active: 1 });
+    res.render("admin/dashboard", { orderData,arr,dt, active: 1 });
   } catch (error) {
     console.log(error.message);
   }
@@ -61,7 +78,7 @@ const loadDashboard = async (req, res) => {
 
 const logout = async (req, res) => {
   try {
-    req.session.admin_id = null;
+    req.session.admin = null;
     res.redirect("/admin");
   } catch (error) {
     console.log(error.message);
