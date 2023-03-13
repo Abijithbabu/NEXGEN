@@ -6359,7 +6359,7 @@ input::-ms-clear {
 20.4 jquery.scrollUp
 --------------------------------------------------------------*/
 /* ScrollUp Custom */
-#topScroll {
+/* #topScroll {
   right: 24px;
   bottom: 60px;
   width: 50px;
@@ -6369,7 +6369,7 @@ input::-ms-clear {
   background-color: #ffffff;
   color: #333333;
   font-size: 18px;
-  text-align: center; }
+  text-align: center; } */
 
 /*--------------------------------------------------------------
 20.5 Slick Carousel

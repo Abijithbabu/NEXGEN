@@ -48,8 +48,9 @@ const loadDashboard = async (req, res) => {
     const orderData = await Order.find().populate('products.item.productId')
     let arr =[] , dt=[]
     orderData.map((x)=>{
+       let date = new Date(x.createdAt).getDate()
       arr = [...arr,x.amount]
-      dt = [...dt,x.createdAt]
+      dt = [...dt,date]
     })
     console.log(arr,dt);
     res.render("admin/dashboard", { admin: userData,orderData,arr,dt, active: 1 });

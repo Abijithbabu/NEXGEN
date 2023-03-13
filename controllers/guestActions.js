@@ -4,6 +4,7 @@ const Product = require('../models/product')
 const Address = require('../models/address')
 const Banner = require('../models/banner')
 const Coupon = require('../models/coupon')
+const { startSession } = require('../models/product')
 let session
 const loadHome = async (req, res) => {
     try {
@@ -24,6 +25,8 @@ const loadProducts = async (req, res) => {
             search = ''
         }
         skip=0
+        start = 0
+        end = 50000
         if(!limit){
             limit=15
         }
@@ -44,29 +47,35 @@ const loadProducts = async (req, res) => {
         console.log('sort ' + req.query.sort);
         console.log('category ' + arr);
         if (sort == 0) {
-            productData = await Product.find({ is_admin: 0, $and: [{ category: arr }, { $or: [{ name: { $regex: '' + search + ".*" } }, { category: { $regex: ".*" + search + ".*" } }] }] }).sort({$natural:-1})
+            productData = await Product.find({ isAvailable:1, $and: [{ category: arr }, { price:{$gte:start,$lte:end} }, { $or: [{ name: { $regex: '' + search + ".*" } }, { category: { $regex: ".*" + search + ".*" } }] }] }).sort({$natural:-1})
             pageCount = Math.floor(productData.length/limit)
             if(productData.length%limit >0){
                 pageCount +=1
             }
             console.log(productData.length + ' results found '+pageCount);
-            productData = await Product.find({ is_admin: 0, $and: [{ category: arr }, { $or: [{ name: { $regex: '' + search + ".*" } }, { category: { $regex: ".*" + search + ".*" } }] }] }).sort({$natural:-1}).skip(skip).limit(limit)
+            productData = await Product.find({ isAvailable:1, $and: [{ category: arr }, { price:{$gte:start,$lte:end} }, { $or: [{ name: { $regex: '' + search + ".*" } }, { category: { $regex: ".*" + search + ".*" } }] }] }).sort({$natural:-1}).skip(skip).limit(limit)
         } else {
-            productData = await Product.find({ is_admin: 0, $and: [{ category: arr }, { $or: [{ name: { $regex: '' + search + ".*" } }, { category: { $regex: ".*" + search + ".*" } }] }] }).sort({ price: sort })
+            productData = await Product.find({ isAvailable:1, $and: [{ category: arr }, { price:{$gte:start,$lte:end} }, { $or: [{ name: { $regex: '' + search + ".*" } }, { category: { $regex: ".*" + search + ".*" } }] }] }).sort({ price: sort })
             pageCount = Math.floor(productData.length/limit)
             if(productData.length%limit >0){
                 pageCount +=1
             }
             console.log(productData.length + ' results found '+pageCount);
-            productData = await Product.find({ is_admin: 0, $and: [{ category: arr }, { $or: [{ name: { $regex: '' + search + ".*" } }, { category: { $regex: ".*" + search + ".*" } }] }] }).sort({ price: sort }).skip(skip).limit(limit)
+            productData = await Product.find({ isAvailable:1, $and: [{ category: arr }, { price:{$gte:start,$lte:end} }, { $or: [{ name: { $regex: '' + search + ".*" } }, { category: { $regex: ".*" + search + ".*" } }] }] }).sort({ price: sort }).skip(skip).limit(limit)
         }
         console.log(productData.length + ' results found');
-        if (req.session.user) { session = req.session.user } else session = false
+        if (req.session.user) { 
+            userData =await User.findById({ _id:req.session.user_id })
+            session = req.session.user
+        } else{
+             session = false
+             userData =''
+        }console.log(userData);
         if(pageCount==0){pageCount=1}
         if(ajax){
         res.json({products: productData,pageCount,page})
         }else{
-        res.render('users/products', { user: session, products: productData, category: categoryData, val: search, selected: category, order: sort, limit: limit,pageCount,page, head: 2 })
+        res.render('users/products', { user: session,userData, products: productData, category: categoryData, val: search, selected: category, order: sort, limit: limit,pageCount,page, head: 2 })
         }
     } catch (error) {
         console.log(error.message);

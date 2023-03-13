@@ -27,6 +27,9 @@ const productSchema = new mongoose.Schema({
     isAvailable:{
         type:Number,
         default:1
+    },
+    Rating:{
+        type:Array
     }
 })
 module.exports = mongoose.model('Product',productSchema)

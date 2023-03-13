@@ -14,32 +14,32 @@
                                             <h1 class="dash__h1 u-s-m-b-14">My Profile</h1>
 
                                             <span class="dash__text u-s-m-b-30">Look all your info, you could customize your profile.</span>
-                                            <div class="row">
-                                                <img src="/uploads/<%-userData.profile%>" alt="no image">
+                                            <div style="padding-left: 50px; padding-bottom: 25px;" >
+                                                <img src="/uploads/<%-userData.profile%>" width="250px" height="250"  style="border-radius: 50%;" alt="no image">
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">Full Name</h2>
 
-                                                    <span class="dash__text">John Doe</span>
+                                                    <span class="dash__text"><%-userData.name%></span>
                                                 </div>
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">E-mail</h2>
 
-                                                    <span class="dash__text">johndoe@domain.com</span>
+                                                    <span class="dash__text"><%-userData.email%></span>
                                                     <div class="dash__link dash__link--secondary">
 
-                                                        <a href="#">Change</a></div>
+                                                        <a href="#"></a></div>
                                                 </div>
                                                 <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">Phone</h2>
 
-                                                    <span class="dash__text">Please enter your mobile</span>
+                                                    <span class="dash__text">+91 <%-userData.mobile%></span>
                                                     <div class="dash__link dash__link--secondary">
 
-                                                        <a href="#">Add</a></div>
+                                                        <a href="#"></a></div>
                                                 </div>
-                                                <div class="col-lg-4 u-s-m-b-30">
+                                                <!-- <div class="col-lg-4 u-s-m-b-30">
                                                     <h2 class="dash__h2 u-s-m-b-8">Birthday</h2>
 
                                                     <span class="dash__text">1991-02-02</span>
@@ -48,90 +48,25 @@
                                                     <h2 class="dash__h2 u-s-m-b-8">Gender</h2>
 
                                                     <span class="dash__text">Male</span>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="dash__link dash__link--secondary u-s-m-b-30">
 
-                                                        <a href='#' data-toggle="modal" data-target="#edit"
-                                class="btn btn-primary a-btn-slide-text btn-sm">change Profile Photo</a></div>
+                                                        <!-- <a href='#' data-toggle="modal" data-target="#edit"
+                                class="btn btn-primary a-btn-slide-text btn-sm">change Profile Photo</a></div> -->
                                                     <div class="u-s-m-b-16">
 
-                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="dash-edit-profile.html">Edit Profile</a></div>
+                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" data-toggle="modal" data-target="#user">Edit Profile</a></div>
                                                     <div>
 
-                                                        <a class="dash__custom-link btn--e-brand-b-2" href="#">Change Password</a></div>
+                                                        <a class="dash__custom-link btn--e-brand-b-2" href="/forget">Change Password</a></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 mb-4 mb-sm-5">
-                <div>
-                    <span class="section-title text-primary mb-3 mb-sm-4">Username</span>
-                    <p><%-userData.name%></p>
-                    <p class="mb-0"></p>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                
-                <div class="col-lg-9 col-md-12">
-                    <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white u-s-m-b-30">
-                        <div class="dash__pad-2">
-                            <h1 class="dash__h1 u-s-m-b-14">My Profile</h1>
-
-                            <span class="dash__text u-s-m-b-30">Look all your info, you could customize your profile.</span>
-                            <div class="row">
-                                <div class="col-lg-4 u-s-m-b-30">
-                                    <h2 class="dash__h2 u-s-m-b-8">Full Name</h2>
-
-                                    <span class="dash__text">John Doe</span>
-                                </div>
-                                <div class="col-lg-4 u-s-m-b-30">
-                                    <h2 class="dash__h2 u-s-m-b-8">E-mail</h2>
-
-                                    <span class="dash__text">johndoe@domain.com</span>
-                                    <div class="dash__link dash__link--secondary">
-
-                                        <a href="#">Change</a></div>
-                                </div>
-                                <div class="col-lg-4 u-s-m-b-30">
-                                    <h2 class="dash__h2 u-s-m-b-8">Phone</h2>
-
-                                    <span class="dash__text">Please enter your mobile</span>
-                                    <div class="dash__link dash__link--secondary">
-
-                                        <a href="#">Add</a></div>
-                                </div>
-                                <div class="col-lg-4 u-s-m-b-30">
-                                    <h2 class="dash__h2 u-s-m-b-8">Birthday</h2>
-
-                                    <span class="dash__text">1991-02-02</span>
-                                </div>
-                                <div class="col-lg-4 u-s-m-b-30">
-                                    <h2 class="dash__h2 u-s-m-b-8">Gender</h2>
-
-                                    <span class="dash__text">Male</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="dash__link dash__link--secondary u-s-m-b-30">
-
-                                        <a data-modal="modal" data-modal-id="#dash-newsletter">Subscribe Newsletter</a></div>
-                                    <div class="u-s-m-b-16">
-
-                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="dash-edit-profile.html">Edit Profile</a></div>
-                                    <div>
-
-                                        <a class="dash__custom-link btn--e-brand-b-2" href="#">Change Password</a></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -146,53 +81,58 @@
 
 
 
-                 <!-- <div class="row">
-                    <div class="col-lg-12 mb-4 mb-sm-5">
-                        <div class="mb-4 mb-sm-5">
-                            <span class="section-title text-primary mb-3 mb-sm-4">Skill</span>
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6">Driving range</div>
-                                    <div class="col-6 text-end">80%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:80%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="10" role="progressbar"></div>
-                            </div>
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6">Short Game</div>
-                                    <div class="col-6 text-end">90%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div>
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6">Side Bets</div>
-                                    <div class="col-6 text-end">50%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress progress-medium mb-3" style="height: 4px;">
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div>
-                            <div class="progress-text">
-                                <div class="row">
-                                    <div class="col-6">Putting</div>
-                                    <div class="col-6 text-end">60%</div>
-                                </div>
-                            </div>
-                            <div class="custom-progress progress progress-medium" style="height: 4px;">
-                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="section-title text-primary mb-3 mb-sm-4">Education</span>
-                            <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-                            <p class="mb-1-9">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-              
+<div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title text-dark" id="exampleModalLongTitle">EDIT PROFILE</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p style="color: black;">Enter User Cerdentials</p>
+            <form action="/editUser" method="post" enctype="multipart/form-data">
+                <div class="card mb-4">
+                    <div class="mb-3 row">
+                        <label for="html5-text-input " class="col-sm-2 text-dark col-form-label">Username</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" value="<%-userData.name%>" id="html5-text-input"
+                                name="name" required />
                         </div>
                     </div>
-                </div> -->
+                    <div class="mb-3 row">
+                        <label for="html5-text-input " class="col-sm-2 col-form-label text-dark">E-mail</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="html5-text-input" value="<%-userData.email%>" name="email"
+                                required />
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="html5-text-input " class="col-sm-2 col-form-label text-dark">Phone</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" id="html5-text-input" name="mno" value="<%-userData.mobile%>"
+                                required />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div>
+                            <label for="formFileMultiple" class="form-label text-dark">Select image to
+                                upload</label>
+                            <input class="form-control" name="image" type="file" id="image"
+                                accept="image/*" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">cancel</button>
+                    <button type="submit" class="btn btn-primary" >Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 <%- include ('../layouts/footer.ejs') %>

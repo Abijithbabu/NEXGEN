@@ -34,7 +34,7 @@ const userSchema = mongoose.Schema({
     },
     profile:{
         type:String,
-        default:'https://bootdey.com/img/Content/avatar/avatar7.png'    
+        default:'avatar7.png'    
     },
     cart:{
         item:[{

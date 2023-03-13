@@ -7,6 +7,8 @@ const userController = require("../controllers/userController");
 const userActions = require('../controllers/userActions')
 const guestActions = require('../controllers/guestActions')
 const userDashboard = require('../controllers/userDashboard')
+const multer = require('../middleware/multer')
+
 user_route.use( session({secret: 'sessionSecret',resave: false,saveUninitialized: true }))
 user_route.use(express.static('public/user'));
 user_route.use('/', blockUser)
@@ -34,9 +36,10 @@ user_route.post('/address', userDashboard.saveAddress)
 user_route.post('/editAddress', userDashboard.editAddress)
 user_route.get('/deleteAddress', userDashboard.deleteAddress)
 user_route.get('/profile', userDashboard.loadProfile)
+user_route.post('/editUser',multer.upload.single('image'),userDashboard.editUser)
 user_route.get('/orders', userDashboard.loadOrders)
 user_route.get('/orderDetails', userDashboard.loadOrderDetails)
-
+user_route.post('/updateRating',userDashboard.updateRating)
 
 user_route.post('/updateCart',userActions.updateCart)
 user_route.get('/addToCart',userActions.addToCart)

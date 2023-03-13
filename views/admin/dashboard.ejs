@@ -495,32 +495,32 @@
 src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>   
 <script>
-  xValues = document.getElementById('sales').value
-  console.log(xValues);
-  const orderData = document.getElementById('orderData').value
-  console.log(orderData.products);
-function od(){  const orderData = document.getElementById('orderData').value
-  for(key of orderData){
-  console.log(key);
-  }}
-//   var xValues = ["Italy", "France", "Spain", "USA", "Argentina","Italy", "France", "Spain", "USA", "Argentina"];
+//   xValues = document.getElementById('sales').value
+//   console.log(xValues);
+//   const orderData = document.getElementById('orderData').value
+//   console.log(orderData.products);
+// function od(){  const orderData = document.getElementById('orderData').value
+//   for(key of orderData){
+//   console.log(key);
+//   }}
+  var xValues = ["Italy", "France", "Spain", "USA", "Argentina","Italy", "France", "Spain", "USA", "Argentina"];
 // var yValues = [55, 49, 44, 24, 15,55, 49, 44, 24, 15];
 var barColors = ["lightblue", "lightgreen","blue","yellow","brown"];
-var yValues = document.getElementById('dt').value
-xValues = document.getElementById('sales').value
-new Chart("myChart", {
-  type: "bar",
-  data: {
-    labels: xValues,
-    datasets: [{
-      backgroundColor: 'lightblue',
-      data: yValues
-    }]
-  },
-  options: {}
-});
+// var yValues = document.getElementById('dt').value
+// xValues = document.getElementById('sales').value
 var xValues = document.getElementById('dt').value
 yValues = document.getElementById('sales').value
+// new Chart("myChart", {
+//   type: "bar",
+//   data: {
+//     labels: xValues,
+//     datasets: [{
+//       backgroundColor: 'lightblue',
+//       data: yValues
+//     }]
+//   },
+//   options: {}
+// });
 
 new Chart("totalRevenueChart", {
   type: "line",
@@ -536,6 +536,31 @@ new Chart("totalRevenueChart", {
     legend: {display: false}
   }
 });
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "World Wide Wine Production"
+    }
+  }
+});
+
+
+
+
+
+
+
+
+
 const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
     totalRevenueChartOptions = {
       series: [
