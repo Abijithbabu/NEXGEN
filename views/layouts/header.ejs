@@ -77,12 +77,12 @@
 
 
 
-    <header id="header"  style="background-color: black; height:70px;;">
+    <!-- <header id="header"  style="background-color: black; height:70px;;">
         <div style="background-color: black; height:70px; position:fixed;" class="container d-flex align-items-center justify-content-lg-between fixed-top">
     
           <h1 class="logo me-auto me-lg-0"><a href="/products">ne<span>x</span>gen</a></h1>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+          Uncomment below if you prefer to use an image logo 
+ <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
     
           <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
@@ -92,7 +92,7 @@
                 <li><a class="nav-link scrollto <%if(head==4){%>active<%}%>" href="/cart">CART</a></li>
                 
             </ul>
-          </nav><!-- .navbar -->
+          </nav>
     
           <% if(user){ %>
             <span class="has-dropdown" data-tooltip="tooltip" data-placement="left" style="text-decoration: none;" >
@@ -114,39 +114,53 @@
                 </ul>
             </span>
             <% }  %> 
-        </div>
-        <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        </div> -->
+
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-dark">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="/products">Ne<span style="text-decoration-color: blue;">x</span>gen</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" onclick="unni()">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled">Disabled</a>
-                </li>
+
+                <li class="nav-item"><a class="nav-link scrollto <%if(head==1){%>active<%}%>" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link scrollto <%if(head==2){%>active<%}%>" href="/products">shop</a></li>
+                <li class="nav-item"><a class="nav-link scrollto <%if(head==3){%>active<%}%>" href="/wishList">wishList</a></li>
+                <!-- <li class="nav-item"><a class="nav-link scrollto <%if(head==4){%>active<%}%>" href="/cart">cart</a></li> -->
+               
               </ul>
-        
+              <ul style=" list-style: none;">
+              <li class="nav-item"><a href="/wishList"><i class="far fa-heart"></i></a></li>
+              <li class="nav-item"><a href="/cart" class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+
+                <span class="total-item-round">20</span></a></li>
+                <% if(user){ %>
+                  <span class="has-dropdown" data-tooltip="tooltip" data-placement="left" style="text-decoration: none;" >
+      
+                      <a><i class="far fa-user-circle <%if(head==5){%>text-primary<%}else{%>text-white <%}%>" href="/profile"></i>&nbsp;<span class="<%if(head==5){%>text-primary<%}else{%>text-white <%}%>" style="font-weight:bold;font-size: small;"><%-user%></span></a>
+                      <span class="js-menu-toggle"></span>
+                      <ul style="width:120px; list-style: none;">
+                          <li><a href="/dashboard"><i class="fas fa-user-circle u-s-m-r-6"></i><span>Account</span></a></li>
+                          <li><a href="/logout"><i class="fas fa-lock-open u-s-m-r-6"></i><span>Signout</span></a></li>
+                      </ul>
+                  </span>
+                  <% } else{ %>
+                  <span class="has-dropdown" data-tooltip="tooltip" data-placement="left" style="text-decoration: none;display:flex;flex-direction: column;" >
+                      <a><i class="far fa-user-circle text-white "></i>&nbsp;<span class="text-white " style="font-weight:bold;font-size: small;">Get started</span></a>
+                      <span class="js-menu-toggle"></span>
+                      <ul style="width:120px ;height: 400px; list-style: none;">                    
+                          <li><a href="/register"><i class="fas fa-user-plus u-s-m-r-6"></i><span>Signup</span></a></li>
+                          <li><a href="/login"><i class="fas fa-lock u-s-m-r-6"></i><span>Signin</span></a></li>                
+                      </ul>
+                  </span>
+                  <% }  %>   
+
+            </ul>
             </div>
           </div>
-        </nav> -->
+        </nav>
       </header>
 

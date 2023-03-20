@@ -5817,14 +5817,14 @@ input::-ms-clear {
 .mini-cart-shop-link {
   position: relative; }
   .mini-cart-shop-link > .total-item-round {
-    top: 16px;
+    top: 0px;
     left: 32px; }
 
 .total-item-round {
-  width: 24px;
+  width: 20px;
   position: absolute;
-  height: 24px;
-  line-height: 24px;
+  height: 20px;
+  line-height: 20px;
   border-radius: 50%;
   text-align: center;
   font-size: 11px;

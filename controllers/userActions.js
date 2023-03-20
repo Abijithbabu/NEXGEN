@@ -90,6 +90,29 @@ const applyCoupon = async(req,res)=>{
 
 }
 
+const onlinePayment = async(req,res)=>{
+    var instance = new RazorPay({
+        key_id:process.env.KEY_ID,
+        key_secret:process.env.KEY_SECRET
+      })
+      let razorpayOrder = await instance.orders.create({
+        amount: req.body.payable*100,
+        currency:'INR',
+        receipt:order._id.toString()
+      })
+      console.log('order Order created', razorpayOrder);
+      res.render("users/online_pay", {
+        userId:req.session.user_id,
+        order_id:razorpayOrder.id,
+        total:  req.body.amount,
+        session: req.session,
+        key_id: process.env.key_id,
+        user: userData,
+        order: order,
+        orderId: order._id.toString()   
+      });
+}
+
 let order
 const placeOrder = async(req,res)=>{
     try {
@@ -107,7 +130,6 @@ const placeOrder = async(req,res)=>{
         }else{
             addrData= await Address.findOne({_id: req.body.address})
         }
-
         const couponData = await Coupon.findOne({_id:req.body.coupon})
         const userData = await User.findOne({_id:req.session.user_id})
         order = new Order({
@@ -119,10 +141,7 @@ const placeOrder = async(req,res)=>{
             products:userData.cart
         })
         if(req.body.payment=='COD'){
-            await order.save(); 
-            await User.updateOne({_id:req.session.user_id},{$unset:{cart:1}})
-            console.log('order successfull');
-            res.render('users/success',{user: req.session.user,head: 4})
+            res.send({method:'COD'})
         }else{
             var instance = new RazorPay({
                 key_id:process.env.KEY_ID,
@@ -133,12 +152,11 @@ const placeOrder = async(req,res)=>{
                 currency:'INR',
                 receipt:order._id.toString()
               })
-              console.log('order Order created', razorpayOrder);
-              res.render("users/online_pay", {
+              console.log('Order created', razorpayOrder);
+              res.send({
                 userId:req.session.user_id,
                 order_id:razorpayOrder.id,
                 total:  req.body.amount,
-                session: req.session,
                 key_id: process.env.key_id,
                 user: userData,
                 order: order,
@@ -151,72 +169,14 @@ const placeOrder = async(req,res)=>{
     }
 }
 
-// const storeOrder=async(req,res)=>{
-//     try{
-//         userSession=req.session
-//         if(userSession.user_id){
-//             const userData=await User.findById({_id:userSession.user_id})
-//             const completeUser=await userData.populate('cart.item.productId')
-            
-            
-//             const totalPrice=userSession.couponTotal||completeUser.cart.totalPrice;
-//             let updateTotal=totalPrice;
-//             userData.cart.totalPrice =updateTotal
-//             const updateUserData=await userData.save()
-
-//             if(completeUser.cart.totalPrice >0){
-//                 order =Orders({
-//                     userId:userSession.user_id,
-//                     payment:req.body.payment,
-//                     country:req.body.country,
-//                     address:req.body.address,
-//                     city:req.body.city,
-//                     state:req.body.state,
-//                     zip:req.body.zip,
-//                     products:completeUser.cart
-                    
-//                 })
-               
-//                  console.log("payment=="+req.body.payment);
-//                 if(req.body.payment == 'Cash-on-Dilevery'){
-                    
-                    // const orderData = await order.save()
-//                     res.redirect('orderSuccess')
-//                 }else {
-//                     var instance = new RazorPay({
-//                       key_id:process.env.KEY_ID,
-//                       key_secret:process.env.KEY_SECRET
-//                     })
-//                     let razorpayOrder = await instance.orders.create({
-//                       amount:totalPrice*100,
-//                       currency:'INR',
-//                       receipt:order._id.toString()
-//                     })
-//                     console.log('order Order created', razorpayOrder);
-//                     res.render("razropayCheckout", {
-//                       userId:req.session.user_id,
-//                       order_id:razorpayOrder.id,
-//                       total: totalPrice,
-//                       session: req.session,
-//                       key_id: process.env.key_id,
-//                       user: userData,
-//                       order: order,
-//                       orderId: order._id.toString()   
-//                     });
-//                   } 
-//                 }}}
-// catch{
-
-// }
-// }
-const loadSuccess = async (req,res)=>{
+const saveOrder = async (req,res)=>{
     await order.save(); 
     await User.updateOne({_id:req.session.user_id},{$unset:{cart:1}})
     console.log('order successfull');
-  res.render('users/success',{user: req.session.user,head: 4}) 
+    res.send({success:true})
 }
 module.exports = {
-    updateCart,
+    updateCart, 
     addToCart,
     addToWishlist,
     deleteFromWishlist,
@@ -224,5 +184,5 @@ module.exports = {
     loadCheckout,
     applyCoupon,
     placeOrder,
-    loadSuccess
+    saveOrder
 }

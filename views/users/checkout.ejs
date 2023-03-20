@@ -89,12 +89,12 @@
                                                     <div class="u-s-m-b-10">
                                                         <div class="radio-box">
 
-                                                            <input type="radio" id="pay-with-check" <% if(i==0){%>checked<%}%> name="address"
+                                                            <input type="radio" id="<%-i%>Address" <% if(i==0){%>checked<%}%> name="address"
                                                                 value="<%-address[i]._id%>">
                                                             <div class="radio-box__state radio-box__state--primary">
 
                                                                 <label class="radio-box__label"
-                                                                    for="pay-with-check">Address <%-i+1%></label>
+                                                                    for="<%-i%>Address">Address <%-i+1%></label>
                                                             </div>
                                                         </div>
                                                         <div class="text-area text-area--primary-style" id="order-note">
@@ -114,12 +114,12 @@
                                                             <!--====== Check Box ======-->
                                                             <div class="radio-box">
 
-                                                                <input type="radio" id="pay-with-check" value=0
+                                                                <input type="radio" id="newAddress" value=0 if(address.length==0){%>checked<%}%>
                                                                     name="address">
                                                                 <div class="radio-box__state radio-box__state--primary">
 
                                                                     <label class="radio-box__label"
-                                                                        for="pay-with-check">use a new shipping and
+                                                                        for="newAddress">use a new shipping and
                                                                         billing address</label>
                                                                 </div>
                                                             </div>
@@ -131,20 +131,20 @@
                                                         <div class="gl-inline">
                                                             <div class="u-s-m-b-15">
 
-                                                                <label class="gl-label" for="billing-fname">FIRST NAME
+                                                                <label class="gl-label" for="firstname">FIRST NAME
                                                                     *</label>
 
                                                                 <input class="input-text input-text--primary-style"
-                                                                    type="text" id="billing-fname" name="firstname"
+                                                                    type="text" id="firstname" name="firstname"
                                                                     data-bill="">
                                                             </div>
                                                             <div class="u-s-m-b-15">
 
-                                                                <label class="gl-label" for="billing-lname">LAST NAME
+                                                                <label class="gl-label" for="lastname">LAST NAME
                                                                     *</label>
 
                                                                 <input class="input-text input-text--primary-style"
-                                                                    type="text" id="billing-lname" name="lastname"
+                                                                    type="text" id="lastname" name="lastname"
                                                                     data-bill="">
                                                             </div>
                                                         </div>
@@ -152,11 +152,11 @@
                                                         <!--====== Street Address ======-->
                                                         <div class="u-s-m-b-15">
 
-                                                            <label class="gl-label" for="billing-street">STREET ADDRESS
+                                                            <label class="gl-label" for="street">STREET ADDRESS
                                                                 *</label>
 
                                                             <input class="input-text input-text--primary-style"
-                                                                type="text" id="billing-street" name="street"
+                                                                type="text" id="street" name="street"
                                                                 placeholder="House name and street name" data-bill="">
                                                         </div>
 
@@ -164,10 +164,10 @@
 
                                                             <!--====== Select Box ======-->
 
-                                                            <label class="gl-label" for="billing-country">COUNTRY
+                                                            <label class="gl-label" for="country">COUNTRY
                                                                 *</label><select name="country"
                                                                 class="select-box select-box--primary-style"
-                                                                id="billing-country" data-bill="">
+                                                                id="country" data-bill="">
                                                                 <option selected value="">Choose Country</option>
                                                                 <option value="uae">United Arab Emirate (UAE)</option>
                                                                 <option value="uk">United Kingdom (UK)</option>
@@ -181,11 +181,11 @@
                                                         <!--====== Town / City ======-->
                                                         <div class="u-s-m-b-15">
 
-                                                            <label class="gl-label" for="billing-town-city">TOWN/CITY
+                                                            <label class="gl-label" for="city">TOWN/CITY
                                                                 *</label>
 
                                                             <input class="input-text input-text--primary-style"
-                                                                type="text" name="city" id="billing-town-city"
+                                                                type="text" name="city" id="city"
                                                                 data-bill="">
                                                         </div>
                                                         <!--====== End - Town / City ======-->
@@ -196,10 +196,10 @@
 
                                                             <!--====== Select Box ======-->
 
-                                                            <label class="gl-label" for="billing-state">STATE/PROVINCE
+                                                            <label class="gl-label" for="state">STATE/PROVINCE
                                                                 *</label><select
                                                                 class="select-box select-box--primary-style"
-                                                                name="state" id="billing-state" data-bill="">
+                                                                name="state" id="state" data-bill="">
                                                                 <option selected value="">Choose State/Province</option>
                                                                 <option value="al">Alabama</option>
                                                                 <option value="al">Alaska</option>
@@ -213,30 +213,24 @@
                                                         <!--====== ZIP/POSTAL ======-->
                                                         <div class="u-s-m-b-15">
 
-                                                            <label class="gl-label" for="billing-zip">ZIP/POSTAL CODE
+                                                            <label class="gl-label" for="pin">ZIP/POSTAL CODE
                                                                 *</label>
 
                                                             <input class="input-text input-text--primary-style"
-                                                                type="text" id="billing-zip"
+                                                                type="text" id="pin"
                                                                 placeholder="Zip/Postal Code" name="pin" data-bill="">
                                                         </div>
                                                         <!--====== End - ZIP/POSTAL ======-->
                                                         <!--====== PHONE ======-->
                                                         <div class="u-s-m-b-15">
 
-                                                            <label class="gl-label" for="billing-phone">PHONE *</label>
+                                                            <label class="gl-label" for="mno">PHONE *</label>
 
                                                             <input class="input-text input-text--primary-style"
-                                                                type="number" name="mno" id="billing-phone"
+                                                                type="number" name="mno" id="mno"
                                                                 data-bill="">
                                                         </div>
-                                                        <!--====== End - PHONE ======-->
-                                                        <div class="u-s-m-b-10">
 
-                                                            <!--====== Check Box ======-->
-
-                                                            <!--====== End - Check Box ======-->
-                                                        </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -277,25 +271,7 @@
                                                         <%}%>
                                                 </div>
                                             </div>
-                                            <!-- <div class="o-summary__section u-s-m-b-30">
-                                            <div class="o-summary__box">
-                                                <h1 class="checkout-f__h1">SHIPPING & BILLING</h1>
-                                                <div class="ship-b">
 
-                                                    <span class="ship-b__text">Ship to:</span>
-                                                    <div class="ship-b__box u-s-m-b-10">
-                                                        <p class="ship-b__p">4247 Ashford Drive Virginia VA-20006 USA (+0) 900901904</p>
-
-                                                        <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a>
-                                                    </div>
-                                                    <div class="ship-b__box">
-
-                                                        <span class="ship-b__text">Bill to default billing address</span>
-
-                                                        <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a></div>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                             <div class="o-summary__section u-s-m-b-30">
                                                 <div class="o-summary__box">
                                                     <table class="o-summary__table">
@@ -343,10 +319,7 @@
                                                     name="payable" />
                                                     <!--====== Radio Box ======-->
                                                     <div >
-
-                                                        <input value="COD"  type="checkbox" id="cb"
-                                                            
-                                                           onchange="val('<%=userData.wallet %>')">
+                                                        <input value="COD"  type="checkbox" id="cb" onchange="val('<%=userData.wallet %>')">
                                                         <div class="radio-box__state radio-box__state--primary">
 
                                                             <label class="radio-box__label" for="">₹ <%=userData.wallet %></label>
@@ -368,7 +341,7 @@
                                                     <!--====== Radio Box ======-->
                                                     <div class="radio-box">
 
-                                                        <input value="COD" class="ppmm" type="radio" id="cash-on-delivery"
+                                                        <input value="COD" class="ppmm" type="radio" required id="cash-on-delivery"
                                                             name="payment" checked>
                                                         <div class="radio-box__state radio-box__state--primary">
 
@@ -388,77 +361,54 @@
                                                     <!--====== Radio Box ======-->
                                                     <div class="radio-box">
 
-                                                        <input value="Debit Card" class="ppmm" type="radio" id="pay-with-card"  name="payment">
+                                                        <input value="Debit Card" class="ppmm" type="radio" required id="pay-with-card"  name="payment">
                                                         <div class="radio-box__state radio-box__state--primary">
 
                                                             <label class="radio-box__label" for="pay-with-card">Pay With
                                                                 Credit / Debit Card</label>
                                                         </div>
                                                     </div>
-                                                    <!--====== End - Radio Box ======-->
-
                                                     <span class="gl-text u-s-m-t-6">International Credit Cards must be
                                                         eligible for use within the United States.</span>
                                                 </div>
                                                 <div class="u-s-m-b-10">
-
-                                                    <!--====== Radio Box ======-->
                                                     <div class="radio-box">
 
-                                                        <input class="ppmm" type="radio" value="UPI" id="pay-pal" name="payment">
+                                                        <input class="ppmm" type="radio" required value="UPI" id="pay-pal" name="payment">
                                                         <div class="radio-box__state radio-box__state--primary">
 
                                                             <label class="radio-box__label" for="pay-pal">Razor Pay
                                                                 </label>
                                                         </div>
                                                     </div>
-                                                    <!--====== End - Radio Box ======-->
-
                                                     <span class="gl-text u-s-m-t-6">When you click "Place Order" below
                                                         we'll take you to Razorpay's site to set up your billing
                                                         information.</span>
                                                 </div>
-
                                                 <div>
-
-                                                    <button class="btn btn--e-brand-b-2 btn-outline-warning btn-sm"
-                                                        type="submit">PLACE ORDER</button>
+                                                    <button class="btn btn--e-brand-b-2 btn-outline-warning btn-sm" onclick="placeOrder()"
+                                                        type="button">PLACE ORDER</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!--====== End - Order Summary ======-->
                                 </div>
                             </div>
                         </div>
                     </div>
-            </div>
+                </div>
             </form>
-            <!--====== End - Section Content ======-->
         </div>
-        <!--====== End - Section 3 ======-->
-    </div>
-    <!--====== End - App Content ======-->
-
-
-
-    <!--====== Modal Section ======-->
-
-
-  
-    </div>
+    </div> 
+</div>
 
     <script src="js/vendor.js"></script>
-
-    <!--====== jQuery Shopnav plugin ======-->
     <script src="js/jquery.shopnav.js"></script>
-
-    <!--====== App ======-->
     <script src="js/app.js"></script>
-
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         function val(p){
-            gTotal =parseInt(document.getElementById('gTotal').value)
+           gTotal =parseInt(document.getElementById('gTotal').value)
            value = parseInt(p)
            console.log(value,gTotal);
            console.log(typeof(value),typeof(gTotal))
@@ -522,7 +472,181 @@
 
         }
 
+    function placeOrder(){
+        let data
+        const selectedValue = document.querySelector('input[name="payment"]:checked').value;
+        const selectedAddress = document.querySelector('input[name="address"]:checked').value;
+        const coupon = document.getElementById('coupon').value
+        const total = document.getElementById('payable').value
+        if(selectedAddress == 0){
+            firstname =  document.getElementById('firstname').value
+            lastname = document.getElementById('lastname').value
+            country = document.getElementById('country').value
+            street = document.getElementById('street').value
+            city = document.getElementById('city').value
+            state = document.getElementById('state').value
+            pin = document.getElementById('pin').value
+            mno = document.getElementById('mno').value
+            data = { payment:selectedValue,address:selectedAddress,coupon:coupon,payable:total,firstname,lastname,country,street,city,state,pin,mno}
+        }else{
+            data = { payment:selectedValue,address:selectedAddress,coupon:coupon,payable:total}
+        }
+        $.ajax({
+                url: '/placeOrder',
+                type: 'POST',
+                data: data,
+                success: function (data) {
+                if(data.method=='COD'){
+                    success()
+                }else{
+                    var options = {
+            "key": data.key_id,
+            "amount": data.total,
+            "currency": "INR",
+            "name": "NEXGEN SYSTEMS",
+            "description": "Payment for your order",
+            "image": "/uploads/logo.png",
+            "order_id": data.order_id,
+            "handler": function (response){
+                console.log(response+'la la la');
+                var payment_id = response.razorpay_payment_id;
+                success()
+            },
+            "prefill": {
+                "name":data.user.name,
+                "email": data.user.email,
+                "contact": data.user.mobile
+            },
+            "theme": {
+                "color": "#21ed95"
+            }
+        };
+        var rzp = new Razorpay(options);
+rzp.on('payment.cancel', function(response) {
+    // handle the payment cancellation
+    alert('Payment cancelled!');
+});
 
+rzp.on('payment.error', function(response) {
+    // handle the payment error
+    var error_code = response.error.code;
+    var error_description = response.error.description;
+    alert('Payment error: ' + error_description + ' (' + error_code + ')');
+});
+            rzp.open();
+
+                }
+                  
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            })
+    } 
+     function success(){
+        $.ajax({
+        url: '/orderSuccess',
+        type: 'GET',
+        data: {  },
+        success: function(data) {
+            console.log('la la 2');
+            alert('Payment successful!');
+        document.getElementById('app').innerHTML = ` <style type="text/css">
+        body
+        {
+            background:#000000;
+        }
+    
+        .payment
+        {
+            border:1px solid #000000;
+            height:280px;
+            border-radius:20px;
+            background:#fff;
+        }
+       .payment_header
+       {
+           background:rgb(42, 125, 11);
+           padding:20px;
+           border-radius:20px 20px 0px 0px;
+           
+       }
+       
+       .check
+       {
+           margin:0px auto;
+           width:50px;
+           height:50px;
+           border-radius:100%;
+           background:#fff;
+           text-align:center;
+       }
+       
+       .check i
+       {
+           vertical-align:middle;
+           line-height:50px;
+           font-size:30px;
+       }
+    
+        .content 
+        {
+            text-align:center;
+        }
+    
+        .content  h1
+        {
+            font-size:25px;
+            padding-top:25px;
+        }
+    
+        .content a
+        {
+            width:200px;
+            height:35px;
+            color:#fff;
+            border-radius:30px;
+            padding:5px 10px;
+            background:rgb(10, 159, 8);
+            transition:all ease-in-out 0.3s;
+        }
+    
+        .content a:hover
+        {
+            text-decoration:none;
+            background:#000;
+        }
+       
+    </style>
+
+    <div class="container">
+        <div class="row">
+           <div class="col-md-6 mx-auto mt-5">
+              <div class="payment">
+                 <div class="payment_header">
+                    <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+                 </div>
+                 <div class="content">
+                    <h1>Order Success !</h1>
+                    <p>your order is succesfull thank you for shopping... !</p><br>
+                    <a href='/' id='redir'style="text-decoration: none;" ></a>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div> `
+     var sec = 10;
+            var timer = setInterval(function () {
+            document.getElementById('redir').innerHTML = 'redirecting in 00:' + sec+' sec';
+            sec--;
+            if (sec < 0) {
+                 clearInterval(timer);
+                 document.getElementById('redir').innerHTML = '';
+                 document.getElementById('redir').click()
+            }
+         }, 1000)}
+    })
+     }   
     </script>
 
 

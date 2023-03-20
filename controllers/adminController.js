@@ -70,9 +70,17 @@ const loadDashboard = async (req, res) => {
       dt = [...dt,date]
     })
     console.log(arr,dt);
-    res.render("admin/dashboard", { orderData,arr,dt, active: 1 });
+    const products = await Product.find()
+    let pds=[],qty=[]
+    products.map(x=>{
+     pds=[...pds,x.name]
+     qty=[...qty,x.stock]
+    })
+    orderData.ma
+    console.log(pds,qty);
+    res.render("admin/dashboard", {pds,qty, orderData,arr,dt, active: 1 });
   } catch (error) {
-    console.log(error.message);
+    console.log(error.message)
   }
 };
 

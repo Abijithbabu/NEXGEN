@@ -21,14 +21,13 @@ user_route.get('/cart',guestActions.loadCart)
 
 user_route.get("/login", auth.isLogout, userController.loginLoad);
 user_route.post("/login", userController.verifyLogin);
-user_route.get('/forget',userController.loadforget)
 user_route.post('/forget',userController.verifyforget)
 user_route.get("/logout", auth.isLogin, userController.userLogout);
 user_route.post('/resetPassword',userController.resetPassword)
 user_route.get("/register", auth.isLogout, userController.loadRegister);
 user_route.post("/register", userController.loadOtp);
 user_route.get('/resendOtp',  userController.resendOtp)
-user_route.post('/verifyOtp', userController.verifyOtp)
+user_route.get('/verifyOtp', userController.verifyOtp)
 
 user_route.get('/dashboard', userDashboard.loadDash)
 user_route.get('/address', userDashboard.loadAddress)
@@ -49,7 +48,6 @@ user_route.get('/deleteFromWishList',userActions.deleteFromWishlist)
 user_route.get('/checkout',userActions.loadCheckout) 
 user_route.post('/applyCoupon',userActions.applyCoupon)
 user_route.post('/placeOrder',userActions.placeOrder) 
-user_route.get('/orderSuccess',userActions.loadSuccess)
-user_route.get('/onlinePayment',userActions.loadSuccess)
+user_route.get('/orderSuccess',userActions.saveOrder)
 
 module.exports = user_route;

@@ -13,6 +13,8 @@ function validateEmail(){
     if(name ==""){
      document.getElementById("errorName").innerHTML="please enter name";
      return false
+      }else if(/(^[a-zA-Z][a-zA-Z\s]{1,20}[a-zA-Z]$)/.test(name)==false){
+        document.getElementById("errorName").innerHTML="please enter a valid name";
       }else{
        document.getElementById("errorName").innerHTML="";
          return true 
@@ -75,7 +77,7 @@ function validateEmail(){
  function loginPassword(){
   let password=document.getElementById("Password").value;
   if(password.length <6){
-    document.getElementById("errPassword").innerHTML="please enter valid password";
+    document.getElementById("errPassword").innerHTML="*please enter valid password";
     return false
 
   }else{
@@ -84,9 +86,49 @@ function validateEmail(){
   }
 }
  function login(){
+  loginEmail()
+  loginPassword()
    if(loginEmail()&&loginPassword()){
      return true
    }else{
      return false
    }
  }
+
+ function validatefEmail(){
+  let emailId=document.getElementById("fEmail")
+   if(/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(emailId.value)==false){
+     document.getElementById("errorfEmail").innerHTML="*Please enter valid email ";
+     return false;
+   }else{
+     document.getElementById("errorfEmail").innerHTML="";
+     return true;
+   }
+ }
+ 
+ function validatefNumber(){
+  let number=document.getElementById("fNumber")
+   if(/^[0-9]+$/.test(number.value)==false){
+    document.getElementById("errorfNumber").innerHTML="*please enter a valid number";
+    return false
+   }
+  else if(number.value.length != 10){
+    document.getElementById("errorfNumber").innerHTML="please enter 10 digits";
+    return false
+     }else{
+      document.getElementById("errorfNumber").innerHTML="";
+        return true
+     } 
+    }   
+
+function forget(){
+  if(validatefNumber()||validatefEmail()){
+    return true
+  }else{
+    return false
+  }
+}
+
+function enable(){
+  $('.inputDisabled').prop("disabled", false);
+}
