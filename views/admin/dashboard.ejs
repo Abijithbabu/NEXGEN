@@ -463,7 +463,8 @@
                     </div>
                     <div class="card-body">
                       <ul class="p-0 m-0 fs-8" style="font-size: smaller;" >
-                        <% for(let key of orderData){%>
+                        <% if(orderData.length>0){
+                        for(let key of orderData){%>
                         <li class="d-flex mb-4 pb-1">
                           <div class="avatar flex-shrink-0 me-3">
                             <p alt="User"  ><%-key.address.firstname%></p>
@@ -479,20 +480,19 @@
                             </div>
                           </div>
                         </li>
-                        <%}%>
+                        <%}}%>
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
-            </div> <%-orderData[1].amount%>
+            </div> 
             <input type="hidden" id="sales" value="<%-arr%>" />
             <input type="hidden" id="dt" value="<%-dt%>" />
             <input type ="hidden" id="pds" value="<%-pds%>" />
             <input type ="hidden" id="qty" value="<%-qty%>" />
 
            <input type="hidden" name="orderData" id="orderData" value="<%-orderData%>" />
-           <button onclick="od()">od</button>
            <script
            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>   
