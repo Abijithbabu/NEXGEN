@@ -185,4 +185,4 @@ module.exports = {
     applyCoupon,
     placeOrder,
     saveOrder
-}
+} 

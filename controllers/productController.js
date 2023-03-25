@@ -1,4 +1,3 @@
-const User = require("../models/userModel");
 const Category = require('../models/category')
 const Product = require('../models/product')
 
@@ -15,31 +14,17 @@ const loadCategory = async (req, res) => {
     }
   };
 
-  
-  // const addCategory = async (req, res) => {
-  //   console.log(req.body);
-  //   const categoryData = await Category.findOne({ name: req.body.category })
-  //   const categoryAll = await Category.find()
-  //   console.log(categoryData);
-  //   if (categoryData) {
-  //     res.render('admin/category', { category: categoryAll, val: '', message: 'category already Exists', active: 3 })
-  //   } else {
-  //     try {
-  //       const category = Category({
-  //         name: req.body.category,
-  //       });
-  //       const categoryData = await category.save();
-  //       res.redirect("category");
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
   const addCategory = async (req, res) => {
     console.log(req.body);
       try {
-        const categoryData = await Category.findOne( { name: req.body.name})
-        if(categoryData){
+        let arr = []
+        const categoryData = await Category.find()
+        categoryData.map(x=>{
+          arr.push(x.name.toUpperCase())
+        })
+        const category = req.body.name.toUpperCase()
+        const isExisting = arr.findIndex(x => x==category)
+        if(isExisting!=-1){
             state =0
         }else{
             state = 1
@@ -55,32 +40,12 @@ const loadCategory = async (req, res) => {
         console.log(error);
       }
     }
-  
-  const editCategory = async (req, res) => {
-    try {
-      const id = req.body.id
-      console.log(id);
-      const category = await Category.findOne({ _id: id })
-      if (category) {
-        const categoryData = await Category.updateOne({ _id: id }, { $set: { name: req.body.category } })
 
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
   const deleteCategory = async (req, res) => {
     try {
-      const id = req.body.id
-      console.log(id);    
-      let categoryData  
-      const category = await Category.findOne({ _id: id });
-      if (category.isAvailable) {
-         categoryData = await Category.findByIdAndUpdate({ _id: id }, { $set: { isAvailable: 0 } });
-      } else { 
-         categoryData = await Category.findByIdAndUpdate({ _id: id }, { $set: { isAvailable: 1 } })
-    }
-      res.send({categoryData})
+      const id = req.query.id
+      await Category.deleteOne({ _id: id });
+      res.redirect('category')
     } catch (error) {
       console.log(error);
     }
@@ -143,7 +108,7 @@ const loadCategory = async (req, res) => {
           res.render("admin/addProducts", { message: "registration failed", category: categoryData, active: 4 });
         }
       } else {
-        res.render("admin/addProducts", { message: "registration failed only jpg ,jpeg & png file supported !", category: categoryData, active: 4 });
+        res.render("admin/addProducts", { message: "registration failed only jpg ,jpeg, webp & png file supported !", category: categoryData, active: 4 });
       }
     } catch (error) {
       console.log(error.message);
@@ -182,11 +147,6 @@ const loadCategory = async (req, res) => {
       const productData =await Product.findOne({_id:req.body.pId})
       console.log(productData.image);
       res.json({ newImage: productData.image});
-      // console.log(pId,img);
-      // await Product.updateOne({ _id: pId },{ $pull: { image: img } })
-      // const productData = Product.findOne({_id:pId})
-      // console.log(productData);
-      // res.send({ newImage: productData.image});
     } catch (error) {
       console.log(error.message);
     }
@@ -254,7 +214,6 @@ module.exports = {
     deleteProduct,
     loadCategory,
     addCategory,
-    editCategory,
     listCategory,
     deleteCategory,
 

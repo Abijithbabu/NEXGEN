@@ -80,8 +80,8 @@
                                                                                 aria-hidden="true"></span>
                                                                             <span><strong>Edit</strong></span>
                                                                     </a>
-                                                                    <a onclick="return confirm('do you want to change availability of <%= banner[i].name %>?')"
-                                                                        href="/admin/deletebanner?id=<%= banner[i]._id %>"
+                                                                    <a onclick="return confirm('Are you sure to Delete banner <%= banner[i].name %>?')"
+                                                                        href="/admin/deleteBanner?id=<%= banner[i]._id %>"
                                                                         class="btn btn-primary btn-sm a-btn-slide-text"
                                                                         <% if( banner[i].isAvailable==0){%>disabled
                                                                         <%}%>>
@@ -125,7 +125,7 @@
                             </div>
                             <div class="modal-body">
                                 <p>Enter Banner Details</p>
-                                <form action="/admin/editBanner" method="post" enctype="multipart/form-data">
+                                <form action="/admin/addBanner" method="post" enctype="multipart/form-data">
                                     <div class="card mb-4">
                                         <div class="mb-3 row">
                                             <label for="html5-text-input" class="col-md-2 col-form-label">Banner
@@ -213,7 +213,7 @@
                                                 <label for="formFileMultiple" class="form-label">Select image to
                                                     upload</label>
                                                 <input class="form-control" name="image" type="file" id="image"
-                                                    accept="image/*" required />
+                                                    accept="image/*"  />
                                             </div>
                                         </div>
                                         <input type="hidden" id="bId" name="id">

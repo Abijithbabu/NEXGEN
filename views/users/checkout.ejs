@@ -332,7 +332,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <% }%> 
+                                        <% }else{%>
+                                            <input type="hidden" id="payable" value="<%= products.totalPrice %>"
+                                        <%}%>     
                                         <div class="o-summary__section u-s-m-b-30">
                                             <div class="o-summary__box">
                                                 <h1 class="checkout-f__h1">PAYMENT INFORMATION</h1>
@@ -412,7 +414,7 @@
            value = parseInt(p)
            console.log(value,gTotal);
            console.log(typeof(value),typeof(gTotal))
-           if( document.getElementById('cb').checked){
+           if( document.getElementById('cb').checked){  
             if(value>=gTotal){
                 document.getElementById('pay-pal').checked = false
                 document.getElementById('pay-with-card').checked = false
@@ -474,10 +476,13 @@
 
     function placeOrder(){
         let data
-        const selectedValue = document.querySelector('input[name="payment"]:checked').value;
-        const selectedAddress = document.querySelector('input[name="address"]:checked').value;
+        console.log('k');
+        const selectedValue = document.querySelector('input[name="payment"]:checked').value;console.log('e');
+        const selectedAddress = document.querySelector('input[name="address"]:checked').value;console.log('s');
         const coupon = document.getElementById('coupon').value
+        console.log('u');
         const total = document.getElementById('payable').value
+        console.log('kesu');
         if(selectedAddress == 0){
             firstname =  document.getElementById('firstname').value
             lastname = document.getElementById('lastname').value

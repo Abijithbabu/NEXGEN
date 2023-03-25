@@ -38,6 +38,7 @@
                         <thead>
                           <tr>
                             <th scope="col">SI NO</th>
+                            <th>Category ID</th>
                             <th scope="col">Category Name</th>
                             <th >List/Unlist</th>
                             <th scope="col">Actions</th>
@@ -49,6 +50,9 @@
                               <tr>
                                 <td scope="row">
                                   <%= i %>
+                                </td>
+                                <td style="font-size: x-small;">
+                                  <%= category[i-1]._id %>
                                 </td>
                                 <td>
                                   <%= category[i-1].name %>
@@ -68,6 +72,12 @@
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     <span><strong>Edit</strong></span>            
                                 </a>
+                                <a href="/admin/deleteCategory?id=<%= category[i-1]._id %>"  class="btn btn-primary a-btn-slide-text btn-sm" <% if( category[i-1].isAvailable == 0){%>disabled<%}%>>
+
+                                  <span class="glyphicon glyphicon-delete" aria-hidden="true"></span>
+                                  <span><strong>Delete</strong></span>            
+                              </a>
+
                               
                                   
                                 </td>

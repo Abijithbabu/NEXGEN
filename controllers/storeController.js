@@ -28,12 +28,21 @@ const loadBanner = async (req,res)=>{
       const editBanner = async (req,res)=>{
         try {
           const id = req.body.id
-          bannerData = await Banner.findByIdAndUpdate({ _id: id }, { $set: {
+          if(req.file){
+            fields = {
             name : req.body.name,
             url: req.body.url,
             description:req.body.description,
             image:req.file.filename
-        }})
+            }
+          }else{
+            fields = {
+              name : req.body.name,
+              url: req.body.url,
+              description:req.body.description,
+              }
+          }
+          bannerData = await Banner.findByIdAndUpdate({ _id: id }, { $set: fields})
           res.redirect('/admin/banners')
         } catch (error) {
           console.log(error.message);
@@ -42,14 +51,12 @@ const loadBanner = async (req,res)=>{
       const listBanner = async (req, res) => {
         try {
           const id = req.body.id
-          console.log(id);    
-          let bannerData  
           const coupon = await Banner.findOne({ _id: id });
           if (coupon.isAvailable) {
-             bannerData = await Banner.findByIdAndUpdate({ _id: id }, { $set: { isAvailable: 0 } });
+             await Banner.findByIdAndUpdate({ _id: id }, { $set: { isAvailable: 0 } });
              state=0
           } else { 
-             bannerData = await Banner.findByIdAndUpdate({ _id: id }, { $set: { isAvailable: 1 } })
+             await Banner.findByIdAndUpdate({ _id: id }, { $set: { isAvailable: 1 } })
              state=1
         }
           res.send({state})
@@ -57,7 +64,15 @@ const loadBanner = async (req,res)=>{
           console.log(error);
         }
       } 
-
+      const deleteBanner = async (req, res) => {
+        try {
+          const id = req.query.id
+          await Banner.deleteOne({ _id: id });
+          res.redirect('banners')
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
 
       const loadCoupon = async (req,res)=>{
@@ -161,6 +176,7 @@ const loadBanner = async (req,res)=>{
         addBanner,
         editBanner,
         listBanner,
+        deleteBanner,
         loadOrders,
         loadOrderDetails,
         changeStatus 

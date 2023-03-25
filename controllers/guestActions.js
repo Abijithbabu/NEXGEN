@@ -1,15 +1,12 @@
 const User = require('../models/userModel')
 const Category = require('../models/category')
 const Product = require('../models/product')
-const Address = require('../models/address')
 const Banner = require('../models/banner')
-const Coupon = require('../models/coupon')
-const { startSession } = require('../models/product')
 let session
 const loadHome = async (req, res) => {
     try {
         productData = await Product.find()
-        const bannerData = await Banner.find()
+        const bannerData = await Banner.find({isAvailable:1})
         if (req.session.user) { session = req.session.user } else session = false
         res.render('users/home', { user: session, product: productData, banner:bannerData, head: 1 })
     }

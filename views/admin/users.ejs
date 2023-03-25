@@ -36,7 +36,9 @@
             <table class="table" style="table-layout: fixed;font-size: small;">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">Names</th>
+                  <th scope="col">sl.no</th>
+                  <th scope="col">profile</th>
+                  <th scope="col">Name</th>
                   <th scope="col">Email</th>
                   <th scope="col">Mobile</th>
                   <th scope="col">Status</th>
@@ -48,6 +50,10 @@
 
                   for(let i=0;i<users.length;i++){ %>
                     <tr>
+                      <td><%-i+1%></td>
+                      <td>
+                        <img src="/uploads/<%= users[i].profile %>" alt="no profile" height="40px" style="border-radius: 50%;"> 
+                      </td>
                       <td>
                         <%= users[i].name %>
                       </td>

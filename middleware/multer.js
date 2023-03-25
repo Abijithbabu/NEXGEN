@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   fileFilter: function (params, file, callback) {
-    if (file.mimetype == "image/png" || file.mimetype == "image/jpeg" || file.mimetype == "image/jpg") {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpeg" || file.mimetype == "image/jpg" || file.mimetype == "image/webp") {
       callback(null, true)
     } else {
       console.log('only jpg & png file supported !');

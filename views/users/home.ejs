@@ -501,34 +501,33 @@
     </section><!-- End Team Section -->
 
     <!-- ======= Contact Section ======= -->
-    <% for(i=0;i<banner.length;i++){%>
-<input type="hidden" value='<%-banner[i].image %>' id="<%-i+1 %>">
-<%}%>
+  <% for(i=0;i<banner.length;i++){%>
+   <input type="hidden" value='<%-banner[i].image %>' id="<%-i %>">
+  <%}%>
   </main><!-- End #main -->
   <script>
     document.getElementById('hero').style = `
-  background-image: url(/uploads/${document.getElementById(4).value});
+  background-image: url(/uploads/${document.getElementById(0).value});
   width: 100%;
   height: 100vh;
   background-size: cover;
   position: relative;
 `
     let i = 0 
+    n = '<%-banner.length%>'
+    console.log(n);
     setInterval(()=>{
-    i += 1  
-     banner = document.getElementById(i).value
-    console.log(banner);
-    console.log(i);
-    if(i==4){i=0}
-    // console.log(banner[1]);
-imageUrl = `/uploads/${banner}`;
-document.getElementById('hero').style = `
-  background-image: url(${imageUrl});
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  position: relative;
-`;},4000)
+      i++ 
+      banner = document.getElementById(i).value
+    if(i==n){i=0}
+    imageUrl = `/uploads/${banner}`;
+    document.getElementById('hero').style = `
+    width: 100%;
+    background-image: url(${imageUrl});
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    `;},4000)
   </script>
   <%- include ('../layouts/footer.ejs') %>
 

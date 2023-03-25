@@ -68,12 +68,11 @@
                               <% } %>
                             </td>
                             <td>
-                              <a class="text-success" href="/admin/editProducts?id=<%= products[i-1]._id %>"><i
-                                  style="color: green;" class="m-r-5 mdi mdi-border-color"></i>Edit</a><br>
+                              <a href="/admin/editProducts?id=<%= products[i-1]._id %>" class="btn btn-primary a-btn-slide-text btn-xs">Edit</a>
 
-                              <a onclick="return confirm('do you want to delete?')" class="text-danger"
-                                href="/admin/deleteProduct?id=<%= products[i-1]._id %>"><i style="color: #ff0000;"
-                                  class="m-r-5 mdi mdi-border-color"></i>Delete</a><br>
+                              <a onclick="return confirm('do you want to delete?')" 
+                                href="/admin/deleteProduct?id=<%= products[i-1]._id %>"
+                                  class="btn btn-primary a-btn-slide-text btn-xs">Delete</a>
                             </td>
 
                           </tr>
