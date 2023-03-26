@@ -276,9 +276,10 @@
 
   // Growth Chart - Radial Bar Chart
   // --------------------------------------------------------------------
+  const x =document.getElementById('totalRev').value
   const growthChartEl = document.querySelector('#growthChart'),
     growthChartOptions = {
-      series: [78],
+      series: [50],
       labels: ['Growth'],
       chart: {
         height: 240,
@@ -420,6 +421,9 @@
 
   // Order Statistics Chart
   // --------------------------------------------------------------------
+  const cod = parseInt(document.getElementById('cod').value)
+  const op = parseInt(document.getElementById('op').value)
+  console.log(cod,op);
   const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
     orderChartConfig = {
       chart: {
@@ -427,9 +431,9 @@
         width: 130,
         type: 'donut'
       },
-      labels: ['Electronic', 'Sports', 'Decor', 'Fashion'],
-      series: [85, 15, 50, 50],
-      colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.success],
+      labels: ['online Payments', 'Cash-on-Delivery'],
+      series: [op, cod],
+      colors: [config.colors.info, config.colors.success],
       stroke: {
         width: 5,
         colors: cardColor
@@ -437,7 +441,7 @@
       dataLabels: {
         enabled: false,
         formatter: function (val, opt) {
-          return parseInt(val) + '%';
+          return parseInt(val)
         }
       },
       legend: {
@@ -457,12 +461,12 @@
             labels: {
               show: true,
               value: {
-                fontSize: '1.5rem',
+                fontSize: '1rem',
                 fontFamily: 'Public Sans',
                 color: headingColor,
                 offsetY: -15,
                 formatter: function (val) {
-                  return parseInt(val) + '%';
+                  return parseInt(val) 
                 }
               },
               name: {
@@ -473,9 +477,9 @@
                 show: true,
                 fontSize: '0.8125rem',
                 color: axisColor,
-                label: 'Weekly',
+                label: 'Total',
                 formatter: function (w) {
-                  return '38%';
+                  return cod+op;
                 }
               }
             }
@@ -490,11 +494,29 @@
 
   // Income Chart - Area chart
   // --------------------------------------------------------------------
+  const date = document.getElementById('dt').value
+  let dt = []
+  dt = date.split(',')
+  let ods = []
+  let qty = []
+  dt.map(x=>{
+    const isExisting = ods.findIndex(index=>index==x)
+    if (isExisting==-1) {
+      ods.push(x)
+      qty.push(10)
+    }else[
+      qty[isExisting]+=10
+    ]
+  })
+  let array = []
+  ods.map(x=>array = [...array,(x+'/03')])
+  console.log(dt,ods,qty,array);
+ 
   const incomeChartEl = document.querySelector('#incomeChart'),
     incomeChartConfig = {
       series: [
         {
-          data: [24, 21, 30, 22, 42, 26, 35, 29]
+          data: qty
         }
       ],
       chart: {
@@ -558,7 +580,7 @@
         }
       },
       xaxis: {
-        categories: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        categories: array,
         axisBorder: {
           show: false
         },
