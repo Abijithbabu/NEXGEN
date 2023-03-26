@@ -115,6 +115,7 @@ const onlinePayment = async(req,res)=>{
 
 let order
 const placeOrder = async(req,res)=>{
+    console.log('comming');
     try {
         if(req.body.address==0){
             addrData = new Address({
@@ -136,7 +137,7 @@ const placeOrder = async(req,res)=>{
             userId:req.session.user_id,
             address:addrData,
             payment:req.body.payment,
-            amount: req.body.amount,
+            amount: req.body.payable,
             offer:couponData.discount,
             products:userData.cart
         })

@@ -32,14 +32,34 @@ const verifyLogin =async (req,res)=>{
 
 const loadDashboard = async (req, res) => {
   try {
-    const orderData = await Order.find().populate('products.item.productId')
-    let arr =[] , dt=[]
+    const orderData = await Order.find().populate('userId')
+    const productData = await  Order.find().populate('products.item.productId')
+    let product = []
+    let ods = []
+    productData.map(x=>{
+      for(let key of x.products.item ){
+      const isExisting = product.findIndex(index=>key.productId.name==index)  
+      if(isExisting==-1){
+      product.push(key.productId.name)
+      ods.push(key.qty)
+    }else{
+      ods[isExisting] += key.qty
+    }}
+    })
+    console.log(product , ods);
+    let arr =[] , dt=[] 
+    let totRev = 0
+    let op = 0
+    let cod = 0
     orderData.map((x)=>{
        let date = new Date(x.createdAt).getDate()
       arr = [...arr,x.amount]
       dt = [...dt,date]
+      if(x.payment=='COD'){cod+=x.amount}
+      else{op+=x.amount}
+      totRev += x.amount
     })
-    console.log(arr,dt);
+    console.log(arr,dt,totRev);
     const products = await Product.find()
     let pds=[],qty=[]
     products.map(x=>{
@@ -48,7 +68,7 @@ const loadDashboard = async (req, res) => {
     })
     orderData.ma
     console.log(pds,qty);
-    res.render("admin/dashboard", {pds,qty, orderData,arr,dt, active: 1 });
+    res.render("admin/dashboard", {pds,qty, orderData,arr,dt,totRev,product,ods,cod,op,active: 1 });
   } catch (error) {
     console.log(error.message)
   }

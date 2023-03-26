@@ -523,7 +523,7 @@
                 "contact": data.user.mobile
             },
             "theme": {
-                "color": "#21ed95"
+                "color": "#212529"
             }
         };
         var rzp = new Razorpay(options);
@@ -541,7 +541,6 @@ rzp.on('payment.error', function(response) {
             rzp.open();
 
                 }
-                  
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
